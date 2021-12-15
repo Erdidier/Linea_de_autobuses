@@ -1,0 +1,97 @@
+{%extends 'base/base.html'%}
+
+{%block title%} {{title}} {%endblock%}
+
+{%block content%}
+	{%from "_macro.html" import render_field%}
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			{%with messages = get_flashed_messages()%}
+				{%if messages%}
+					{%for message in messages%}
+						<div class="alert alert-dismissible alert-success">
+						  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+						  {{message}}
+						</div>
+					{%endfor%}
+				{%endif%}
+			{%endwith%}
+			<img src="{{url_for('static', filename='IMG/autobus.jpeg')}}" class="img-fluid">
+			<br><br>
+			<div class="card card-body">
+				<form action="/itinerario/redondo" method="POST" name="compra" id="compra">
+					<div class="btn-group col-md-3" role="group">
+						<input type="radio" name="viaje" id="viaje_0" class="btn-check" autocomplete="off" value="/itinerario/sencillo" onclick="tipoViaje();" onchange="changeAction(this.value);">
+						<label class="btn btn-outline-primary btn-sm" for="viaje_0">Viaje Sencillo</label><br>
+						<input type="radio" name="viaje" id="viaje_1" class="btn-check" autocomplete="off" checked value="/itinerario/redondo" onclick="tipoViaje();" onchange="changeAction(this.value);">
+						<label class="btn btn-outline-primary btn-sm" for="viaje_1">Viaje Redondo</label>
+					</div>
+					<div class="form-group col-md-3 divH offset-md-2">
+						<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+						<label for="pasajeros">Num. de Pasajeros: </label>
+						<input type="text" name="pasajeros" id="pasajeros" class="form-control">
+					</div><br>
+					<div class="form-group col-md-3 divH">
+						<label for="origen" class="form-label mt-4">Origen</label>
+		      			<select class="form-select" name="origen" id="origen">
+		      				<option>---Selecciona---</option>
+		      				{%for o in origen%}
+					        <option value="{{o[1]}}">{{o[1]}}</option>
+					        {%endfor%}
+					    </select>	
+					</div>
+					<div class="form-group col-md-3 divH offset-md-2">
+					    <label for="destino" class="form-label mt-4" id="l_destino">Destino</label>
+		      			<select class="form-select" name="destino" id="destino">
+					        
+					    </select>	
+					</div><br>
+					<div class="form-group col-md-3 divH" id="divi">
+						<label for="ida" class="form-label mt-4" id="l_ida">Ida</label>
+						<input type="text" name="ida" id="ida" class="form-control">						
+					</div>
+					<div class="form-group col-md-3 offset-md-2 divH">					
+						<label for="regreso" class="form-label mt-4" id="l_regreso">Regreso</label>
+		      			<input type="text" name="regreso" id="regreso" class="form-control">
+					</div>
+					<br><br>
+					<div class="form-group">
+						<!-- <a style="display: none;" id="sencillo" href="/itinerario/sencillo" class="btn btn-primary btn-block">Buscar</a>
+						<a id="redondo" href="/itinerario/redondo" class="btn btn-primary btn-block">Buscar</a> -->
+						<button type="submit" class="btn btn-primary btn-block">
+							Save
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- <div class="col-md-7 pt-4">
+			<table class="table table-striped table-bordered bg-white table-sm">
+				<thead>
+					<tr>
+						<td>Nombre</td>
+						<td>C.P.</td>
+						<td>Teléfono</td>
+						<td>Capacidad</td>
+						<td>Operaciones</td>
+					</tr>
+				</thead>
+				<tbody>
+					{%for estacionamiento in estacionamientos%}
+						<tr>
+							<td>{{estacionamiento.nombre}}</td>
+							<td>{{estacionamiento.c_p}}</td>
+							<td>{{estacionamiento.teléfono}}</td>
+							<td>{{estacionamiento.capacidad}}</td>
+							<td>
+								<a href="/edit/{{estacionamiento.id}}" class="btn btn-secondary btn-sm">Edit</a>
+								<a href="/delete/{{estacionamiento.id}}" class="btn btn-danger btn-sm btn-delete">Delete</a>
+							</td>
+						</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+		</div> -->
+	</div>
+	<script type="text/javascript" src="{{url_for('static', filename='JS/select.js')}}"></script>
+{%endblock%}

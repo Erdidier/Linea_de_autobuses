@@ -1,0 +1,28 @@
+{%extends 'base/base.html'%}
+
+{%block title%}{{title}}{%endblock%}
+
+{%block content%}
+	<div class="col-md-7 pt-4">
+		<table class="table table-striped table-bordered bg-white table-sm">
+			<thead>
+				<tr>
+					<td>Código de Llegada</td>
+					<td>Fecha/Hora de Llegada</td>
+					<td>Fecha/Hora de Salida</td>
+					<td>Total Pago</td>
+				</tr>
+			</thead>
+			<tbody>
+				{%for registro in registros%}
+					<tr>
+						<td>{{registro.codigo_llegada}}</td>
+						<td>{{registro.fecha_llegada}}</td>
+						<td>{{registro.fecha_salida}}</td>
+						<td>{{registro.total_pago}}</td>
+					</tr>
+				{%endfor%}
+			</tbody>
+		</table>
+	</div>
+{%endblock%}

@@ -1,0 +1,73 @@
+{%extends 'base/base.html'%}
+
+{%block title%} {{title}} {%endblock%}
+
+{%block content%}
+	{%if tipo_v == 'sencillo' or tipo_v == 'redondo'%}
+	{%if horarios_i != ()%}
+		<h1>Ida</h1>
+		{%for horario_i in horarios_i%}
+			<div class="col-md-7 pt-4">
+				<table class="table table-borderless bg-white table-sm">
+					<thead>
+						<tr>
+							<th>Salida</th>
+							<th>Llegada</th>
+							<th>Costo</th>
+							<!-- <td>Capacidad</td> -->
+							<th>Operaciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{hora_i}}<br>{{horario_i[1]}}</td>
+							<td>{{horario_i[2]}}</td>
+							<td>{{horario_i[8]}}</td>
+							<!-- <td>{{horario_i[5]}}</td> -->
+							<td>
+								{%if tipo_v == 'sencillo'%}
+								<a href="/datos/{{tipo_v}}/{{horario_i[0]}}" class="btn btn-primary btn-sm">Elegir</a>
+								{%elif tipo_v == 'redondo'%}
+								<a href="/itinerario/redondo1/{{origen}}/{{destino}}/{{fecha_regreso}}/{{horario_i[0]}}" class="btn btn-primary btn-sm">Elegir</a>
+								{%endif%}
+								<!-- <a href="/comprar/{{tipo_v}}/{{horario_i[0]}}" class="btn btn-primary btn-sm">Elegir</a> -->
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		{%endfor%}
+	{%endif%}
+	{%elif tipo_v == 'redondo1'%}
+	{%if horarios_r != ()%}
+		<h1>Regreso</h1>
+		{%for horario_r in horarios_r%}
+			<div class="col-md-7 pt-4">
+				<table class="table table-borderless bg-white table-sm">
+					<thead>
+						<tr>
+							<th>Salida</th>
+							<th>Llegada</th>
+							<th>Costo</th>
+							<!-- <td>Capacidad</td> -->
+							<th>Operaciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{hora_r}}<br>{{horario_r[1]}}</td>
+							<td>{{horario_r[2]}}</td>
+							<td>{{horario_r[8]}}</td>
+							<!-- <td>{{horario_r[5]}}</td> -->
+							<td>
+								<a href="/datos/{{tipo_v}}/{{id_ri}}/{{horario_r[0]}}" class="btn btn-primary btn-sm">Elegir</a>
+								<!-- <a href="/comprar/{{horario_r[0]}}/{{horario_r[0]}}" class="btn btn-primary btn-sm">Elegir</a> -->
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		{%endfor%}
+	{%endif%}
+	{%endif%}
+{%endblock%}

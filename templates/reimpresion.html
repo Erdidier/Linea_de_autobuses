@@ -1,0 +1,37 @@
+{%extends 'base/base.html'%}
+
+{%block content%}
+	<div class="col-md-6 offset-md-3">
+		{%with messages = get_flashed_messages()%}
+			{%if messages%}
+				{%for message in messages%}
+					<div class="alert alert-dismissible alert-success">
+					  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+					  {{message}}
+					</div>
+				{%endfor%}
+			{%endif%}
+		{%endwith%}
+		<h1>Reimpresión de Boletos</h1><br>
+		<div class="card card-body">
+			<form action="/reimpresion" method="POST">
+				<div class="form-group">
+					<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+					<label for="numero">Número de boleto</label>
+					<input type="text" name="numero" placeholder="1" class="form-control">
+				</div>
+				<div class="form-group">
+					<fieldset>
+					    <label for="correo">Correo electrónico</label>
+					    <input type="text" name="correo" class="form-control">
+					  </fieldset>
+				</div><br>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-block">
+						Buscar
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{%endblock%}

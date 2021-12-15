@@ -1,0 +1,36 @@
+{%extends 'base/base.html'%}
+
+{%block content%}
+	<div class="col-md-4 offset-md-4">
+		<h1>Salida de Vehículo</h1><br>
+		<div class="card card-body">
+			<form method="POST">
+				<div class="form-group">
+					<label for="salida">Fecha y Hora de Salida</label>
+					<input type="text" name="salida" readonly="" value="{{salida}}" class="form-control">
+				</div>
+				<div class="form-group">
+					<fieldset>
+					    <label for="código">Código de Llegada</label>
+					    <input type="text" name="código" readonly="" value="{{código}}" class="form-control">
+					  </fieldset>
+				</div>
+				<div class="form-group">
+					<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+					<label for="total">Total a Pagar</label>
+					<input type="text" name="total" readonly="" value="{{total}}" class="form-control">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-block">
+						Pagar
+					</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-danger btn-block">
+						Cancelar
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{%endblock%}

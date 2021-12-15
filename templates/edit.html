@@ -1,0 +1,32 @@
+{%extends 'base/base.html'%}
+
+{%block content%}
+	<div class="col-md-4 offset-md-4">
+		<div class="card card-body">
+			<form action="/update/{{estacionamiento.id}}" method="POST">
+				<div class="form-group">
+					<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+					<label for="nombre">Nombre</label>
+					<input type="text" name="nombre" placeholder="Nombre del estacionamiento" value="{{estacionamiento.nombre}}" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="c_p">Código Postal</label>
+					<input type="text" name="c_p" placeholder="Ej: 62588" value="{{estacionamiento.c_p}}" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="teléfono">Teléfono</label>
+					<input type="text" name="teléfono" placeholder="Ej: 7772584191" value="{{estacionamiento.teléfono}}" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="capacidad">Capacidad</label>
+					<input type="text" name="capacidad" placeholder="Ej: 300" value="{{estacionamiento.capacidad}}" class="form-control">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-block">
+						Save
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{%endblock%}

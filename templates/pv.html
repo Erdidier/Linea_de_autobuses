@@ -1,0 +1,27 @@
+{%extends 'base/base.html'%}
+
+{%block content%}
+	<div class="col-md-10 offset-md-1">
+		<h1>Terminales y Puntos de Venta</h1><br>
+		<div class="card card-body divH" style="overflow: hidden;">
+			<form action="" method="POST" name="ubicacion">
+				<div class="d-grid gap-5 col-md-3">
+					<input type="radio" name="terminal" id="terminal_0" class="btn-check" checked value="Cd. México" onclick="ubicacionTerminal();">
+					<label class="btn btn-outline-primary" for="terminal_0">Cd. México</label>
+					<input type="radio" name="terminal" id="terminal_1" class="btn-check" value="Cuernavaca" onclick="ubicacionTerminal();">
+					<label class="btn btn-outline-primary" for="terminal_1">Cuernavaca</label>
+					<input type="radio" name="terminal" id="terminal_2" class="btn-check" value="Puebla" onclick="ubicacionTerminal();">
+					<label class="btn btn-outline-primary" for="terminal_2">Puebla</label>
+					<input type="radio" name="terminal" id="terminal_3" class="btn-check" value="Xalapa" onclick="ubicacionTerminal();">
+					<label class="btn btn-outline-primary" for="terminal_3">Xalapa</label>
+				</div>
+			</form>
+		</div>
+		<div class="card card-body divH" style="overflow: hidden;">
+			<iframe id="CDMX" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3762.6590736234507!2d-99.092545!3d19.427131!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fc086717e8c9%3A0xf5254367497db54c!2sBlvd.%20Puerto%20A%C3%A9reo%2C%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1639034923377!5m2!1ses-419!2smx" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+			<iframe id="cuernavaca" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15097.164125126408!2d-99.236163!3d18.918508!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc1774fd949bfed7f!2sPullman%20de%20Morelos!5e0!3m2!1ses-419!2smx!4v1639037964187!5m2!1ses-419!2smx" width="400" height="300" style="border:0; display: none;" allowfullscreen="" loading="lazy"></iframe>
+			<iframe id="puebla" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60344.492327906715!2d-98.2419244470425!3d19.040387449608453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc13f29891f29%3A0x991e8055f6f953a!2sCentral%20de%20Autobuses%20Puebla!5e0!3m2!1ses-419!2smx!4v1639038098162!5m2!1ses-419!2smx" width="400" height="300" style="border:0; display: none;" allowfullscreen="" loading="lazy"></iframe>
+			<iframe id="xalapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3760.3699581531173!2d-96.90610898537875!3d19.525724186831507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85db32194ee391f1%3A0x40a9b243c9bd875e!2sCentral%20de%20Autobuses%20de%20Xalapa!5e0!3m2!1ses-419!2smx!4v1639038141384!5m2!1ses-419!2smx" width="400" height="300" style="border:0; display: none;" allowfullscreen="" loading="lazy"></iframe>
+		</div>
+	</div>
+{%endblock%}

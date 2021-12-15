@@ -1,0 +1,71 @@
+{%extends 'base/base.html'%}
+
+{%block content%}
+	<div class="col-md-10 offset-md-1">
+		{%with messages = get_flashed_messages()%}
+			{%if messages%}
+				{%for message in messages%}
+					<div class="alert alert-dismissible alert-success">
+					  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+					  {{message}}
+					</div>
+				{%endfor%}
+			{%endif%}
+		{%endwith%}
+		<h1>Informes de viajes</h1><br>
+		<div class="card card-body divP">
+			<form action="/informes/origen" method="POST" name="informe" id="informe">
+				<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+				<div class="btn-group" role="group">
+					<input type="radio" name="filtro" id="filtro_0" class="btn-check" autocomplete="off" value="/informes/fecha" onchange="changeAction1(this.value);">
+					<label class="btn btn-outline-primary btn-sm" for="filtro_0">Fecha</label>
+					<input type="radio" name="filtro" id="filtro_1" class="btn-check" autocomplete="off" checked value="/informes/origen" onchange="changeAction1(this.value);">
+					<label class="btn btn-outline-primary btn-sm" for="filtro_1">Origen</label>
+					<input type="radio" name="filtro" id="filtro_2" class="btn-check" autocomplete="off" value="/informes/destino" onchange="changeAction1(this.value);">
+					<label class="btn btn-outline-primary btn-sm" for="filtro_2">Destino</label>
+					<input type="radio" name="filtro" id="filtro_3" class="btn-check" autocomplete="off" value="/informes/autobus" onchange="changeAction1(this.value);">
+					<label class="btn btn-outline-primary btn-sm" for="filtro_3">Autobús</label>
+					<input type="radio" name="filtro" id="filtro_4" class="btn-check" autocomplete="off" value="/informes/operador" onchange="changeAction1(this.value);">
+					<label class="btn btn-outline-primary btn-sm" for="filtro_4">Operador</label>
+				</div><br><br>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-block">
+						Save
+					</button>
+				</div>
+			</form>
+			<div class="col-md-10 offset-md-1 pt-4">
+				<table cellspacing="0" cellpadding="0" width="100%" style="border: 1px solid #ccc; margin: 0 0 25px;">
+					<thead>
+						<tr>
+							<th style="font-weight: 400; background-color: #3bb2e6; color: #fff; padding: 10px 15px; border-left: 1px solid #fff; width: 50%;">ID</th>
+							<th style="font-weight: 400; background-color: #3bb2e6; color: #fff; padding: 10px 15px; border-left: 1px solid #fff; width: 50%;">Origen</th>
+							<th style="font-weight: 400; background-color: #3bb2e6; color: #fff; padding: 10px 15px; border-left: 1px solid #fff; width: 50%;">Destino</th>
+							<th style="font-weight: 400; background-color: #3bb2e6; color: #fff; padding: 10px 15px; border-left: 1px solid #fff; width: 50%;">Operador</th>
+							<th style="font-weight: 400; background-color: #3bb2e6; color: #fff; padding: 10px 15px; border-left: 1px solid #fff; width: 50%;">Autobús</th>
+							<th style="font-weight: 400; background-color: #3bb2e6; color: #fff; padding: 10px 15px; border-left: 1px solid #fff; width: 50%;">Asientos</th>
+							<th style="font-weight: 400; background-color: #3bb2e6; color: #fff; padding: 10px 15px; border-left: 1px solid #fff; width: 50%;">Fecha</th>
+							<th style="font-weight: 400; background-color: #3bb2e6; color: #fff; padding: 10px 15px; border-left: 1px solid #fff; width: 50%;">Hora</th>
+							<th style="font-weight: 400; background-color: #3bb2e6; color: #fff; padding: 10px 15px; border-left: 1px solid #fff; width: 50%;">Costo</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for ruta in rutas%}
+							<tr>
+								<td>{{ruta[0]}}</td>
+								<td>{{ruta[1]}}</td>
+								<td>{{ruta[2]}}</td>
+								<td>{{ruta[3]}}</td>
+								<td>{{ruta[4]}}</td>
+								<td>{{ruta[5]}}</td>
+								<td>{{ruta[6]}}</td>
+								<td>{{ruta[7]}}</td>
+								<td>{{ruta[8]}}</td>
+							</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{%endblock%}
