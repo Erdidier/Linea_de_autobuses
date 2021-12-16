@@ -407,4 +407,4 @@ def reviews(page = 1):
 
 if __name__ == '__main__':
 	csrf.init_app(app)
-	app.run(host="0.0.0.0", port = 8000)	
+	app.run(host="0.0.0.0", port = 80)	
