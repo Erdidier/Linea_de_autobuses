@@ -220,20 +220,23 @@ def logout():
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-	login_form = forms.LoginForm(request.form)
-	if request.method == 'POST' and login_form.validate():
-		username = login_form.username.data
-		password = login_form.password.data
-		user = User.query.filter_by(username = username).first()
-		if user is not None and user.password == password:
+	if request.method == 'POST':
+		con = obtener_conexion()
+		username = request.form.get('usuario')
+		password = request.form.get('contraseña')
+		with con.cursor() as cursor:
+			cursor.execute("SELECT usuario,contraseña FROM usuarios WHERE usuario = '{}'".format(username))
+			user = cursor.fetchall()
+		#user = User.query.filter_by(username = username).first()
+		if user != () and user[0][1] == password:
 			success_message = 'Bienvenido {}'.format(username)
 			flash(success_message)
 			session['username'] = username
-			return redirect(url_for('registros'))
+			return redirect(url_for('informes'))
 		else:
 			error_message = 'Usuario o contraseña no válidos!'
 			flash(error_message)
-	return render_template('login.html', form = login_form)
+	return render_template('login.html')
 
 @app.route('/registros')
 def registros():
