@@ -39,7 +39,7 @@ def page_not_found(e):
 
 @app.before_request
 def before_request():
-	if 'username' not in session and request.endpoint in ['comment']:
+	if 'username' not in session and request.endpoint in ['rutas','informes']:
 		return redirect(url_for('login'))
 	elif 'username' in session and request.endpoint in ['login', 'create']:
 		return redirect(url_for('rutas'))
@@ -146,6 +146,8 @@ def itinerario(tipo_v,orig='',dest='',fecha_r='',id_ri=0):
 	con = obtener_conexion()
 	horarios_i = []
 	horarios_r = []
+	fecha_i=''
+	hora_i=''
 	if tipo_v == 'sencillo':
 		with con.cursor() as cursor:
 			cursor.execute("SELECT * FROM itinerario WHERE origen = '{}' AND destino = '{}' AND fecha = '{}'".format(origen,destino,fecha_ida))
